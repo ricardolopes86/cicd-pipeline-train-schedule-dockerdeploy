@@ -13,7 +13,7 @@ pipeline {
                 branch 'master'
             }
             steps {
-                scripts {
+                script {
                     app = docker.build("ricardosilva/train-schedule")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
@@ -25,7 +25,6 @@ pipeline {
             when {
                 branch 'master'
             }
-
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_hub_login') {
@@ -35,5 +34,5 @@ pipeline {
                 }
             }
         }
-    }
+    }   
 }
